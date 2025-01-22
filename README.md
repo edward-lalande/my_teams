@@ -12,6 +12,18 @@ Make sure to have the package `libuuid-devel` if not, download it with you packa
     make
 ```
 
+Then launch the `my_teams_server` on the port you want, by example:
+
+```sh
+    ./my_teams_server 4242
+```
+
+If you want to join the server with the client you need to specify de ip address and the port of the server
+
+```sh
+    ./myteams_cli 127.0.0.1 4242
+```
+
 ## Co-Contributors
 
 <table>
