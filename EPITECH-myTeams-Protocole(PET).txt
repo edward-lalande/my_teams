@@ -1,0 +1,185 @@
+EPITECH myTEAMS PROTOCOL - PET
+
+The following are the mandatory FTP commands from client to server:
+
+• /help : show help
+
+• /login “user_name” : set the user_name used by client
+
+• /logout : disconnect the client from the server
+
+• /users : get the list of all users that exist on the domain
+
+• /user “user_uuid” : get details about the requested user
+
+• /send “user_uuid” “message_body” : send a message to specific user
+
+• /messages “user_uuid” : list all messages exchanged with the specified user
+
+• /subscribe “team_uuid” : subscribe to the events of a team and its sub directories
+(enable reception of all events from a team)
+
+• /subscribed ?“team_uuid” : list all subscribed teams or list all users
+subscribed to a team
+
+• /unsubscribe “team_uuid” : unsubscribe from a team
+
+• /use ?“team_uuid” ?“channel_uuid” ?“thread_uuid” : Sets the command
+context to a team/channel/thread
+
+• /create : based on the context, create the sub resource
+
+    When the context is not defined (/use):
+    • /create “team_name” “team_description” : create a new team
+
+    When team_uuid is defined (/use “team_uuid”):
+    • /create “channel_name” “channel_description” : create a new channel
+
+    When team_uuid and channel_uuid are defined (/use “team_uuid” “channel_uuid”):
+    • /create “thread_title” “thread_message” : create a new thread
+
+    When team_uuid, channel_uuid and thread_uuid are defined (/use “team_uuid” “channel_uuid” “thread_uuid”):
+    • /create “comment_body” : create a new reply
+
+• /list : based on the context, list all the sub resources
+
+    When the context is not defined (/use):
+
+    • /list : list all existing teams
+
+    When team_uuid is defined (/use “team_uuid”):
+    • /list : list all existing channels
+
+    When team_uuid and channel_uuid are defined (/use “team_uuid” “channel_uuid”):
+    • /list : list all existing threads
+
+    When team_uuid, channel_uuid and thread_uuid are defined (/use “team_uuid” “channel_uuid” “thread_uuid”):
+    • /list : list all existing replies
+
+• /info : based on the context, display details of the current resources
+
+    When the context is not defined (/use):
+    • /info : display currently logged-in user details
+
+    When team_uuid is defined (/use “team_uuid”):
+    • /info : display currently selected team details
+
+    When team_uuid and channel_uuid are defined (/use “team_uuid” “channel_uuid”):
+    • /info : display currently selected channel details
+
+    When team_uuid, channel_uuid and thread_uuid are defined (/use “team_uuid” “channel_uuid” “thread_uuid”):
+    • /info : display currently selected thread details
+
+Numeric  Order List of Mandatory Reply Codes and Messages:
+
+    - 100  =>  "Connection succed."
+    - 101  =>  "Request succced".
+    - 200  =>  "Command not found."
+    - 201  =>  "Missing arguments."
+    - 202  =>  "Bad format."
+    - 203  =>  "Already login."
+    - 204  =>  "Not login."
+    - 205  =>  "Not found."
+    - 206  =>  "Already existing."
+    - 207  =>  "Team not found."
+    - 208  =>  "Channel not found."
+    - 209  =>  "Thread not found."
+    - 210  =>  "Too many subscribers in this team."
+    - 211  =>  "Already subscribed."
+    - 212  =>  "User is not subscribe to this team."
+    - 400  =>  "Too many creation."
+
+Code and commands:
+
+- /help : show help
+
+    On success  => 101
+    On error    => 202
+
+- /login “user_name”:
+
+    On success  => 101
+    On error    => 201
+                => 202
+                => 203
+
+- /logout:
+
+    On success  => 101
+    On error    => 202
+                => 204
+
+- /users:
+
+    On success  => 101
+    On error    => 202
+    On error    => 204
+
+- /user “user_uuid”:
+
+    On success  => 101
+    On error    => 201
+                => 202
+                => 204
+                => 205
+
+- /send “user_uuid” “message_body”:
+
+    On success  => 101
+    On error    => 201
+                => 202
+                => 204
+                => 205
+
+/messages “user_uuid”:
+
+    On success  => 101
+    On error    => 201
+                => 202
+                => 204
+                => 205
+
+/subscribe “team_uuid”:
+
+    On success  => 101
+    On error    => 201
+                => 202
+                => 204
+                => 207
+                => 210
+                => 211
+
+/subscribed ?“team_uuid”
+
+    On success  => 101
+    On error    => 202
+                => 204
+                => 207
+
+/unsubscribe “team_uuid”:
+
+    On success  => 101
+    On error    => 201
+                => 202
+                => 204
+                => 207
+                => 212
+
+- /use ?“team_uuid” ?“channel_uuid” ?“thread_uuid”:
+
+    On success  => 101
+    On error    => 202
+                => 204
+
+- /info ?“team_uuid” ?“channel_uuid” ?“thread_uuid”:
+
+    On success  => 101
+    On error    => 202
+                => 204
+
+- /list:
+
+    On success  => 101
+    On error    => 202
+                => 204
+                => 207
